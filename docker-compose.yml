@@ -1,0 +1,142 @@
+version: '3.8'
+
+services:
+  # Zookeeper para Kafka
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data
+      - zookeeper-logs:/var/lib/zookeeper/log
+
+  # Kafka
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    hostname: kafka
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "9101:9101"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_DELETE_TOPIC_ENABLE: 'true'
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+
+  # MongoDB
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: orders
+    volumes:
+      - mongodb-data:/data/db
+      - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  # Redis
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+
+  # Kafka UI (opcional para desarrollo)
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    depends_on:
+      - kafka
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+  # Product Service (Go)
+  product-service:
+    build:
+      context: ./go-apis/product-service
+      dockerfile: Dockerfile
+    container_name: product-service
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=8081
+      - REDIS_ADDR=redis:6379
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # Customer Service (Go)
+  customer-service:
+    build:
+      context: ./go-apis/customer-service
+      dockerfile: Dockerfile
+    container_name: customer-service
+    ports:
+      - "8082:8082"
+    environment:
+      - PORT=8082
+      - REDIS_ADDR=redis:6379
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # Java Worker
+  java-worker:
+    build:
+      context: ./java-worker
+      dockerfile: Dockerfile
+    container_name: java-worker
+    ports:
+      - "8083:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/orders?authSource=admin
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PRODUCT_API_URL=http://product-service:8081
+      - CUSTOMER_API_URL=http://customer-service:8082
+    depends_on:
+      - kafka
+      - mongodb
+      - redis
+      - product-service
+      - customer-service
+    restart: unless-stopped
+
+volumes:
+  zookeeper-data:
+  zookeeper-logs:
+  kafka-data:
+  mongodb-data:
+  redis-data: 

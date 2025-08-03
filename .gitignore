@@ -1,0 +1,596 @@
+# 🚀 Order Processing System - .gitignore
+
+## 📁 Java (Spring Boot)
+### Compiled class files
+*.class
+
+### Log files
+*.log
+
+### BlueJ files
+*.ctxt
+
+### Mobile Tools for Java (JMT)
+.mtj.tmp/
+
+### Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### Virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+### Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code
+.vscode/
+
+## 📁 Go
+### Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+### Test binary, built with `go test -c`
+*.test
+
+### Output of the go coverage tool
+*.out
+
+### Dependency directories
+vendor/
+
+### Go workspace file
+go.work
+
+### Go build cache
+go-build/
+
+## 📁 Docker
+### Docker volumes
+docker-volumes/
+data/
+
+### Docker logs
+*.log
+
+### Docker temporary files
+.dockerignore~
+
+## 📁 Node.js (if any scripts)
+### Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+### Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+### Coverage directory used by tools like istanbul
+coverage/
+
+### nyc test coverage
+.nyc_output
+
+### Dependency directories
+jspm_packages/
+
+### Optional npm cache directory
+.npm
+
+### Optional eslint cache
+.eslintcache
+
+### Optional REPL history
+.node_repl_history
+
+### Output of 'npm pack'
+*.tgz
+
+### Yarn Integrity file
+.yarn-integrity
+
+## 📁 Python (for test scripts)
+### Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+### C extensions
+*.so
+
+### Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+### PyInstaller
+*.manifest
+*.spec
+
+### Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+### Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+### Translations
+*.mo
+*.pot
+
+### Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+### Flask stuff:
+instance/
+.webassets-cache
+
+### Scrapy stuff:
+.scrapy
+
+### Sphinx documentation
+docs/_build/
+
+### PyBuilder
+target/
+
+### Jupyter Notebook
+.ipynb_checkpoints
+
+### pyenv
+.python-version
+
+### celery beat schedule file
+celerybeat-schedule
+
+### SageMath parsed files
+*.sage.py
+
+### Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+### Spyder project settings
+.spyderproject
+.spyproject
+
+### Rope project settings
+.ropeproject
+
+### mkdocs documentation
+/site
+
+### mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+## 📁 OS Generated Files
+### macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+### Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+### Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+## 📁 IDE/Editor Files
+### Vim
+*.swp
+*.swo
+*~
+
+### Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+### Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+### VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+## 📁 Project Specific
+### Application logs
+logs/
+*.log
+
+### Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+### Database files
+*.db
+*.sqlite
+*.sqlite3
+
+### Configuration files with secrets
+application-local.properties
+application-local.yml
+application-local.yaml
+.env.local
+.env.production
+
+### Backup files
+*.bak
+*.backup
+*.old
+
+### Cache directories
+.cache/
+cache/
+
+### Test reports
+test-results/
+reports/
+coverage/
+
+### Build artifacts
+target/
+build/
+dist/
+out/
+
+### Docker build context
+.dockerignore~
+
+## 📁 Documentation
+### Generated documentation
+docs/generated/
+docs/build/
+
+## 📁 Monitoring/Logging
+### Application metrics
+metrics/
+*.metrics
+
+### Health check files
+health/
+
+## 📁 Security
+### Private keys
+*.pem
+*.key
+*.p12
+*.pfx
+
+### Certificates
+*.crt
+*.cer
+*.der
+
+### SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+## 📁 Development Tools
+### Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+### Ansible
+*.retry
+
+### Vagrant
+.vagrant/
+
+### Packer
+packer_cache/
+
+## 📁 Backup and Archive
+### Archive files
+*.tar
+*.tar.gz
+*.tar.bz2
+*.zip
+*.rar
+*.7z
+
+### Backup files
+*.backup
+*.bak
+*.old
+*.orig
+
+## 📁 Performance and Profiling
+### Profiling data
+*.hprof
+*.prof
+*.trace
+
+### Memory dumps
+*.hprof
+*.dump
+
+## 📁 Documentation Build
+### Sphinx
+docs/_build/
+docs/build/
+
+### Javadoc
+javadoc/
+
+### API documentation
+api-docs/
+
+## 📁 CI/CD
+### GitHub Actions
+.github/workflows/.env
+
+### GitLab CI
+.gitlab-ci.yml.local
+
+### Jenkins
+.jenkins/
+
+### Travis CI
+.travis.yml.local
+
+## 📁 Local Development
+### Local configuration
+local/
+dev/
+development/
+
+### Personal notes
+TODO.md
+NOTES.md
+*.todo
+*.note
+
+## 📁 Database
+### SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+### PostgreSQL
+*.sql
+*.dump
+
+### MySQL
+*.sql
+*.dump
+
+### MongoDB
+*.bson
+*.dump
+
+## 📁 Cache and Temporary Files
+### Application cache
+.cache/
+cache/
+tmp/
+temp/
+
+### Browser cache
+.browsersync/
+
+### Package manager cache
+.npm/
+.yarn/
+.gradle/
+
+## 📁 IDE Configuration
+### JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+### Eclipse
+.metadata/
+.project
+.classpath
+.settings/
+
+### NetBeans
+nbproject/
+build.xml
+
+### Vim
+*.swp
+*.swo
+*~
+
+### Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+## 📁 OS and System Files
+### macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+### Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+.history
+.bash_history
+.zsh_history
+
+## 📁 Project Specific Exclusions
+### Keep important files
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+!gradle/wrapper/gradlew
+!gradle/wrapper/gradlew.bat
+
+### Keep documentation
+!README.md
+!docs/**/*.md
+!*.md
+
+### Keep configuration templates
+!application.properties.template
+!application.yml.template
+!docker-compose.yml.template
+
+### Keep scripts
+!scripts/**/*.py
+!scripts/**/*.sh
+!scripts/**/*.js
+
+## 📁 Final Notes
+# This .gitignore file is comprehensive and covers:
+# - Java/Spring Boot development
+# - Go development  
+# - Docker containers
+# - Python scripts
+# - Multiple IDEs and editors
+# - OS-specific files
+# - Security-sensitive files
+# - Build artifacts and cache
+# - Documentation and reports 
