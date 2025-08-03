@@ -2,8 +2,7 @@
 
 ## 📝 Descripción General
 
-Sistema distribuido para procesamiento de pedidos con enriquecimiento de datos y resiliencia, desarrollado como prueba técnica para posición de Senior Developer.
-
+Sistema distribuido para procesamiento de pedidos con enriquecimiento de datos y resiliencia
 ### 🎯 Objetivo
 Desarrollar un *Worker* en **Java** que:
 - Consume mensajes de un **tópico de Kafka** con información básica del pedido
@@ -197,8 +196,9 @@ project/
 │   └── customer-service/      # Servicio de Clientes
 ├── scripts/                   # Scripts de utilidad
 │   └── send-test-messages.py # Generador de mensajes de prueba
-├── docker/                    # Configuración Docker
-│   └── mongo-init.js         # Inicialización MongoDB
+├── config/                    # Configuraciones
+│   └── mongodb/              # Configuración MongoDB
+│       └── mongo-init.js     # Inicialización MongoDB
 └── docs/                      # Documentación adicional
 ```
 
